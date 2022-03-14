@@ -50,7 +50,7 @@ node {
     }
     withCredentials([usernamePassword(credentialsId: 'abc58384-c366-4f8d-a85b-123a06077c3f', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')])
 {
-
+ def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
     stage('Git command')
         {
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
@@ -58,7 +58,7 @@ node {
               bat returnStatus: true, script:  "git status"
               bat returnStatus: true, script: "git checkout feature/001"
               bat returnStatus: true, script: "git pull origin singlePipeline"
-              bat returnStatus: true, script: "git push origin feature/001 "
+              bat returnStatus: true, script: "git push origin feature/001 https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/https://github.com/Bhuvanesh05/JenkinsProject.git"
         
         }
 }    
