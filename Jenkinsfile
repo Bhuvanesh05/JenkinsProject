@@ -30,7 +30,7 @@ node {
                 rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }else{
                  rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
-                 rg = bat returnStatus: true, script:  "git status"
+                 
             }
             if (rc != 0) { error 'hub org authorization failed' }
 
@@ -46,6 +46,13 @@ node {
             printf rmsg
             println('Hello from a Job DSL script!')
             println(rmsg)
+        }
+        stage('Git command')
+        {
+              bat returnStatus: true, script:  "git status"
+              bat returnStatus: true, script: "git checkout feature/001"
+              bat returnStatus: true, script: "git pull origin singlePipeline"
+              bat returnStatus: true, script: "git push origin feature/001"
         }
     }
 }
