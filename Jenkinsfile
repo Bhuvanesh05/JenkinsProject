@@ -2,12 +2,6 @@
 import groovy.json.JsonSlurperClassic
 node {
 
-parameters
- {
-        string(name: 'PERSON', defaultValue: 'Mr Bhuvanesh', description: 'Who should I say hello to?')
-
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-    }
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
     def SFDC_USERNAME
@@ -52,13 +46,10 @@ parameters
             println('Hello from a Job DSL script!')
             println(rmsg)
         }
-        println ${params.PERSON}
-      println  ${params.BIOGRAPHY}
+        
         input message:'Approve deployment?'
     }
 
-    withCredentials([usernamePassword(credentialsId: 'abc58384-c366-4f8d-a85b-123a06077c3f', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')])
-{
     stage('Git command')
         {
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
@@ -68,5 +59,5 @@ parameters
               bat returnStatus: true, script: "git pull origin singlePipeline"
               bat returnStatus: true, script: "git push origin feature/001 --force"
         }
-}    
+    
 }
