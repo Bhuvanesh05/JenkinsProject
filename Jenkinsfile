@@ -35,7 +35,6 @@ node {
             if (rc != 0) { error 'hub org authorization failed' }
 
 			println rc
-			println rg
 			// need to pull out assigned username
 			if (isUnix()) {
 				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d src /. -u ${HUB_ORG} -w 10"
