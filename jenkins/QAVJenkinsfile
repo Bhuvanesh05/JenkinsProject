@@ -45,5 +45,16 @@ node {
             println('Hello from a Job DSL script!')
             println(rmsg)
         }
+         input message:'Approve deployment?'
+    
     }
+    stage('Git command')
+        {
+              bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
+              bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
+              bat returnStatus: true, script:  "git status"
+              bat returnStatus: true, script: "git checkout QA"
+              bat returnStatus: true, script: "git pull origin QAValidate"
+              bat returnStatus: true, script: "git push origin QA --force"
+        }
 }

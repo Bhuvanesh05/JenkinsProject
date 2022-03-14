@@ -47,10 +47,10 @@ node {
             println(rmsg)
         }
         
-        input message:'Approve deployment?'
+       // input message:'Approve deployment?'
     }
 
-    stage('Git command')
+   /* stage('Git command')
         {
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
               bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
@@ -58,6 +58,6 @@ node {
               bat returnStatus: true, script: "git checkout feature/001"
               bat returnStatus: true, script: "git pull origin singlePipeline"
               bat returnStatus: true, script: "git push origin feature/001 --force"
-        }
+        }*/
     
 }
