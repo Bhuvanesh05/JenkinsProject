@@ -52,6 +52,8 @@ parameters
             println('Hello from a Job DSL script!')
             println(rmsg)
         }
+        println ${params.PERSON}
+      println  ${params.BIOGRAPHY}
         input message:'Approve deployment?'
     }
 
