@@ -55,7 +55,7 @@ node {
               bat returnStatus: true, script:  "git status"
               bat returnStatus: true, script: "git checkout feature/001"
               bat returnStatus: true, script: "git pull origin singlePipeline"
-              bat returnStatus: true, script: "git push origin feature/001 https://github.com/Bhuvanesh05/JenkinsProject.git"
+              bat returnStatus: true, script: "git push origin feature/001 "
         
         }
 }    

@@ -1,4 +1,4 @@
-//deploy class
+//jenkins deploy class
 public class VerifyDate{
 	
 	//method to handle potential checks against two dates
