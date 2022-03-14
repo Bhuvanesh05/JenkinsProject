@@ -50,7 +50,6 @@ node {
     }
     withCredentials([usernamePassword(credentialsId: 'abc58384-c366-4f8d-a85b-123a06077c3f', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')])
 {
- def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
     stage('Git command')
         {
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""

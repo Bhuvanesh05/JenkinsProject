@@ -1,4 +1,4 @@
-//deploy new class
+//deploy my new class
 public class VerifyDate{
 	
 	//method to handle potential checks against two dates
