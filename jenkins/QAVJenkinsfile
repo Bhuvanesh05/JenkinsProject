@@ -45,7 +45,7 @@ node {
             println('Hello from a Job DSL script!')
             println(rmsg)
         }
-         input message:'Approve deployment?'
+        
     
     }
     stage('Git command')
