@@ -55,6 +55,8 @@ node {
               bat returnStatus: true, script:  "git status"
               bat returnStatus: true, script: "git checkout QA"
               bat returnStatus: true, script: "git pull origin QAValidate"
-              bat returnStatus: true, script: "git push origin QA --force"
+              rg = bat returnStatus: true, script: "git push origin QA --force"
+              if (rg != 0) { error 'merge failed' }
+              else { 'Merge successfull' }
         }
 }
