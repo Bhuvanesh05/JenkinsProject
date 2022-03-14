@@ -50,6 +50,7 @@ node {
     }
     stage('Git command')
         {
+            input message:'Approve changes to QA org?'         
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
               bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
               bat returnStatus: true, script:  "git status"
