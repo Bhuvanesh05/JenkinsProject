@@ -36,14 +36,28 @@ node {
 			
 			// need to pull out assigned username
 			if (isUnix()) {
-				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d src/. -u ${HUB_ORG} -w 10 -u"
+				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d src/. -u ${HUB_ORG} -w 10 -c"
 			}else{
-			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d src/. -u ${HUB_ORG} -w 10 -u"
+			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d src/. -u ${HUB_ORG} -w 10 -c"
 			}
 			  
             printf rmsg
             println('Hello from a Job DSL script!')
             println(rmsg)
         }
+        
+    
     }
+    stage('Git command')
+        {
+            input message:'Approve changes to QA org?'         
+              bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
+              bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
+              bat returnStatus: true, script:  "git status"
+              bat returnStatus: true, script: "git checkout QA"
+              bat returnStatus: true, script: "git pull origin QAValidate"
+              rg = bat returnStatus: true, script: "git push origin QA --force"
+              if (rg != 0) { error 'merge failed' }
+              else { println 'Merge successfull' }
+        }
 }
