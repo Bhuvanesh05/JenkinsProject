@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 //QA deployment new 
-=======
-// QA Deployments update
->>>>>>> fd2c2bec50c3e1154e716f9d6ae85fdbcaa5bf19
 public class VerifyDate{
 	
 	//method to handle potential checks against two dates
