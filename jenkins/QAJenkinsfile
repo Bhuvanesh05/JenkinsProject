@@ -1,7 +1,7 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
 node {
-
+ 
     def BUILD_NUMBER=env.BUILD_NUMBER
     def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
     def SFDC_USERNAME
@@ -20,7 +20,7 @@ node {
 
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
-        
+        input message:'Approve deployment?'         
         checkout scm
     }
 
@@ -47,11 +47,16 @@ node {
             println(rmsg)
         }
         
-        input message:'Approve deployment?'
+       // input message:'Approve deployment?'
     }
+<<<<<<< HEAD
 withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
 {
      stage('Git command')
+=======
+
+   /* stage('Git command')
+>>>>>>> 6b90d879b92079c8911cf8ace98304e19791a424
         {
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
               bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
@@ -59,7 +64,11 @@ withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]
               bat returnStatus: true, script: "git checkout feature/001"
               bat returnStatus: true, script: "git pull origin singlePipeline"
               bat returnStatus: true, script: "git push origin feature/001 --force"
+<<<<<<< HEAD
         }
 }   
+=======
+        }*/
+>>>>>>> 6b90d879b92079c8911cf8ace98304e19791a424
     
 }
