@@ -49,8 +49,9 @@ node {
         
         input message:'Approve deployment?'
     }
-
-    stage('Git command')
+withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
+{
+     stage('Git command')
         {
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
               bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
@@ -59,5 +60,6 @@ node {
               bat returnStatus: true, script: "git pull origin singlePipeline"
               bat returnStatus: true, script: "git push origin feature/001 --force"
         }
+}   
     
 }
