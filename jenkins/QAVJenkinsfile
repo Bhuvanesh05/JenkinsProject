@@ -48,7 +48,9 @@ node {
         
     
     }
-    stage('Git command')
+  withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
+  {
+      stage('Git command')
         {
             input message:'Approve changes to QA org?'         
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
@@ -60,4 +62,5 @@ node {
               if (rg != 0) { error 'merge failed' }
               else { println 'Merge successfull' }
         }
+  }  
 }
