@@ -51,10 +51,14 @@ node {
     
     }
   withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
-  {
+  { 
+      stage('User Approval')
+        {
+            input message:'Approve changes to QA org?'
+        }
       stage('Git command')
         {
-            input message:'Approve changes to QA org?'         
+                   
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
               bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
               bat returnStatus: true, script:  "git status"

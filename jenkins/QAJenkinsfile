@@ -18,13 +18,19 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = tool 'toolbelt'
 
-    stage('checkout source') {
+    stage('checkout source') 
+    {
         // when running in multi-branch job, one must issue this command
-        input message:'Approve deployment?'         
+               
         checkout scm
     }
 
-    withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
+    withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
+     {
+         stage('User Approval')
+         {
+             input message:'Approve deployment?'  
+         }
         stage('Deploye Code') {
             if (isUnix()) {
                 sh returnStatus: true, script: "${toolbelt} sfdx update"
