@@ -26,8 +26,10 @@ node {
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
             if (isUnix()) {
+                sh returnStatus: true, script: "${toolbelt} sfdx update"
                 rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }else{
+                bat returnStatus: true, script: "\"${toolbelt}\" sfdx update"
                  rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile \"${jwt_key_file}\" --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }
             if (rc != 0) { error 'hub org authorization failed' }
@@ -48,10 +50,20 @@ node {
         
     
     }
+<<<<<<< HEAD
      withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
      {stage('Git command')
+=======
+  withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')])
+  { 
+      stage('User Approval')
         {
-            input message:'Approve changes to QA org?'         
+            input message:'Approve changes to QA org?'
+        }
+      stage('Git command')
+>>>>>>> 62c67b78077a1391d69b3cd0393c1b7d99ca4070
+        {
+                   
               bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
               bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
               bat returnStatus: true, script:  "git status"
