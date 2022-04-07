@@ -59,7 +59,7 @@ node {
       stage('Git command')
         {
                    
-              bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
+              //bat returnStatus: true, script: "git config user.email \"kumarbhuvanesh625@gmail.com\""
               bat returnStatus: true, script: "git config user.name \"Bhuvanesh05\""
               bat returnStatus: true, script:  "git status"
               bat returnStatus: true, script: "git checkout QA"
